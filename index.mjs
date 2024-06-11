@@ -28,14 +28,17 @@ function formatDate(date) {
 
 console.log('user name: ', process.env.TERRAPAY_USERNAME);
 app.get('/get-test-mfs', (req, res) => {
+    // https://pro-connect.terrapay.com:21211/eig/gsma/accounts/msisdn/+8801753267237/status?bnv=Faysal Ahmed&provider=88003
     axios
-        .get('https://uat-connect.terrapay.com:21211/eig/getwalletlist/BD', {
+        .get('https://pro-connect.terrapay.com:21211/eig/getwalletlist/BD', {
             headers: {
                 'X-USERNAME': process.env.TERRAPAY_USERNAME,
                 'X-PASSWORD': process.env.TERRAPAY_PASSWORD,
                 'X-ORIGINCOUNTRY': 'AU',
                 'X-DATE': formatDate(new Date()),
+                'Content-Type': 'text/json',
             },
+            body: 'banks',
         })
         .then(result => {
             res.json({ data: result.data });
