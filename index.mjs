@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import axios from 'axios';
 
 const app = express();
 
@@ -10,7 +11,7 @@ app.get('/', (req, res) => {
 });
 
 console.log('user name: ', process.env.TERRAPAY_USERNAME);
-app.post('/get-test-mfs', (req, res) => {
+app.get('/get-test-mfs', (req, res) => {
     axios
         .get('https://uat-connect.terrapay.com:21211/eig/getwalletlist/BD', {
             headers: {
